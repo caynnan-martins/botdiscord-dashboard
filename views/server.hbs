@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{#if guild}} {{guild.name}} - Detalhes {{else}} Erro {{/if}}</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Flowbite -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-600 text-white py-4 shadow-md">
+        <div class="container mx-auto text-center">
+            <h1 class="text-2xl font-bold">
+                {{#if guild}}Detalhes do Servidor{{else}}Erro de Acesso{{/if}}
+            </h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
+        {{#if guild}}
+            <!-- Conteúdo do servidor -->
+            <div class="text-center">
+                <h2 class="text-3xl font-semibold text-gray-800">{{guild.name}}</h2>
+                {{#if guild.iconUrl}}
+                    <img class="w-32 h-32 mx-auto rounded-full mt-4" src="{{guild.iconUrl}}" alt="Ícone do servidor {{guild.name}}" />
+                {{else}}
+                    <p class="text-gray-500 mt-4">Este servidor não possui um ícone configurado.</p>
+                {{/if}}
+                <p class="text-gray-700 mt-2">ID do Servidor: <span class="font-mono text-blue-600">{{guild.id}}</span></p>
+            </div>
+        {{else}}
+            <!-- Mensagem de erro -->
+            <div class="text-center">
+                <p class="text-red-500 text-xl font-semibold">Você não tem permissões administrativas nesta guilda.</p>
+                <p class="text-gray-700 mt-2">Se você acha que isso é um erro, verifique suas permissões no Discord ou entre em contato com o administrador.</p>
+            </div>
+        {{/if}}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-10">
+        <div class="container mx-auto text-center">
+            <a href="/dashboard" class="text-blue-400 hover:text-blue-300">Voltar para o Dashboard</a>
+        </div>
+    </footer>
+</body>
+</html>

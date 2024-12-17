@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.4.7/dist/flowbite.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <div class="container mx-auto p-6">
+        <!-- Header -->
+        <header class="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h1 class="text-3xl font-semibold text-center mb-4">Bem-vindo, {{user.username}}!</h1>
+            <div class="flex justify-center items-center space-x-4">
+                <img src="{{avatarUrl}}" alt="Avatar" class="rounded-full w-24 h-24 border-2 border-gray-300">
+                <div>
+                    <p class="text-xl">Nome: {{user.username}}</p>
+                    <p>ID: {{user.id}}</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Guilds -->
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Guilds onde você é admin:</h2>
+            <ul class="space-y-4">
+                {{#each adminGuilds}}
+                <li class="bg-white p-4 rounded-lg shadow-lg flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        {{#if this.icon}}
+                        <img src="https://cdn.discordapp.com/icons/{{this.id}}/{{this.icon}}.png" alt="Ícone da Guild" class="w-16 h-16 rounded-full">
+                        {{else}}
+                        <div class="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-xl text-white">Sem ícone</span>
+                        </div>
+                        {{/if}}
+                        <a href="https://discord.com/channels/{{this.id}}" class="text-lg font-medium text-blue-600 hover:text-blue-800">{{this.name}}</a>
+                    </div>
+                    <a href="server/{{this.id}}">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Acessar
+                    </button>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </section>
+
+        <!-- Voltar -->
+        <div class="mt-6 text-center">
+            <a href="/" class="text-blue-500 hover:text-blue-700">Voltar</a>
+        </div>
+    </div>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.4.7/dist/flowbite.min.js"></script>
+
+</body>
+
+</html>
